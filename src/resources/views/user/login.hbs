@@ -1,0 +1,19 @@
+<form action="/user/check-login" method="POST">
+  {{#if message}}
+    <h1>{{message}}</h1>
+  {{/if}}
+  <div class="form-group">
+    <label for="username">Tên đăng nhập</label>
+    <input type="text" class="form-control" id="username" name="username">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="text" class="form-control" id="password" name="password">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="remember-me" name="remember" value="true">
+    <label class="form-check-label" for="remember-me">Remember me</label>
+  </div>
+  <a href="/user/registration">Đăng kí tài khoản</a>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,48 @@
+<form method="POST" action="/image/create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="upload-image">Single image</label>
+        <input type="file" class="form-control-file" id="upload-image" name="image">
+    </div>
+    <button type="submit">Send</button>
+</form>
+
+<form method="POST" action="/image/create-multiple" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="upload-multiple-image">Multiple Image</label>
+        <input type="file" class="form-control-file" id="upload-multiple-image" name="multipleImages" multiple>
+    </div>
+    <button type="submit">Send</button>
+</form>
+
+<form method="POST" action="/image/create-cloud-single" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Single Cloud image</label>
+        <input type="file" class="form-control-file" name="cloudImage">
+    </div>
+    <button type="submit">Send</button>
+</form>
+
+<form method="POST" action="/image/create-cloud-multiple" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Multiple Cloud Image</label>
+        <input type="file" class="form-control-file" name="multipleCloudImages" multiple>
+    </div>
+    <button type="submit">Send</button>
+</form>
+
+<script>
+    /*
+        var input = document.getElementById('upload-image');
+        console.log(input)
+        console.log(input.files)
+
+        input.addEventListener('change', function() {
+            if(input.files.length > 0){
+                console.log(input.value, input)
+                //console.log(input.files);
+                }
+            else
+                console.log('Select a file');
+        });
+    */
+</script>

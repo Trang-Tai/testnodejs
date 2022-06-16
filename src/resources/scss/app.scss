@@ -1,0 +1,14 @@
+@import 'variable';
+
+h1 {
+    color: $pink-color;
+}
+
+h2 {
+    color: blue;
+}
+
+.checkbox-select-all-options {
+    width: 180px;
+    margin: 0 8px;
+}

@@ -1,0 +1,13 @@
+<img src="/imgs/{{image}}" alt="single-image">
+
+{{#each images}}
+    <img src="/imgs/{{this.filename}}" alt="multiple-images" style="width: 30%; border-radius: 50%;">
+{{/each}}
+
+<img src="{{url}}" alt="single-image">
+
+{{#each url}}
+    <img src="{{this.url}}" alt="multiple-images" style="width: 30%; border-radius: 50%;">
+{{/each}}
+
+

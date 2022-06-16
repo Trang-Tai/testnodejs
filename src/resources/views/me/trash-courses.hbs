@@ -1,0 +1,122 @@
+<div class="mt-4">
+    <div>
+        <a href="/me/stored/courses">Danh sách khóa học</a>
+        <h3>Khóa học đã xóa</h3>
+    </div>
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên khóa học</th>
+                <th scope="col">Trình độ</th>
+                <th scope="col">Thời gian tạo</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each courses}}
+                <tr>
+                    <th scope="row">{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.level}}</td>
+                    <td>{{this.createdAt}}</td>
+                    <td>
+                        <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
+                        <a href="" class="btn btn-link" data-target="#delete-course-modal" data-toggle="modal" data-whatever="{{this._id}}">Xóa vĩnh viễn</a>
+                    </td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="5" class="text-center">
+                        Thùng rác trống
+                        <a href="/me/stored/courses">Danh sách khóa học</a>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{!-- Confirm delete course --}}
+{{!-- <form id="delete-course-form" method="POST"> --}}
+    <div class="modal" id="delete-course-modal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">XÓA KHÓA HỌC</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Hành động này ko thể khôi phục. Bạn chắc chắn muốn xóa khóa học này?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            <button type="button" class="btn btn-danger" id="btn-delete-course">Xóa vĩnh viễn</button>
+        </div>
+        </div>
+    </div>
+    </div>
+{{!-- </form> --}}
+
+<form name="delete-course-form" method="POST"></form>
+<form name="restore-course-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var courseId;
+        var deleteForm = document.forms['delete-course-form'];
+        var btnDeleteCourse = document.getElementById('btn-delete-course');
+        // var restoreBtn = $('.btn-restore');
+        var restoreBtns = document.querySelectorAll('.btn-restore');
+        var restoreForm = document.forms['restore-course-form'];
+        console.log(restoreForm)
+
+        // WHEN DIALOG CONFIRM CLICKED
+        $('#delete-course-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            courseId = button.data('whatever') // Extract info from data-* attributes
+            console.log(courseId)
+            /*
+            var form = document.querySelector('#delete-course-form');
+            const action = document.createAttribute("action");
+            action.value = `/courses/${courseId}?_method=DELETE`;
+            form.setAttributeNode(action);
+            */
+        })
+        
+        btnDeleteCourse.onclick = function() {
+            deleteForm.action = `/courses/${courseId}/force?_method=DELETE`;
+            deleteForm.submit();
+        }
+
+        /* restoreBtn.click(function(e) {
+            e.preventDefault();
+            console.log($(this).data('id'));
+        });*/
+
+        Array.from(restoreBtns).forEach(restoreBtn => {
+            restoreBtn.onclick = function(e) {
+                e.preventDefault();
+                // console.log(restoreBtn.dataset.id);
+                restoreForm.action = `/courses/${restoreBtn.dataset.id}/restore?_method=PATCH`;
+                restoreForm.submit();
+            }
+        })
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

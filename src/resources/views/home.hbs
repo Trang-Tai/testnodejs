@@ -1,0 +1,19 @@
+{{!-- Không cần nội dung html, chỉ cần viết nội dung chính nó sẽ tự render với layout --}}
+<div class="row mt-4">
+    {{#each courses}}
+        <div class="col-sm-6 col-lg-4">
+            <div class="card">
+                <a href="/courses/{{this._doc.slug}}" target="_blank">
+                    <img src="{{this._doc.image}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <a href="/courses/{{this._doc.slug}}">
+                        <h5 class="card-title">{{this._doc.name}}</h5>
+                        <p class="card-text">{{this._doc.description}}</p>
+                    </a>
+                    <a href="#" class="btn btn-primary">Buy Course</a>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
